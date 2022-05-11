@@ -12,60 +12,36 @@ window.onmousemove=(e)=>{
     })
 }
 
-// auto scroll reset
 
 
 
-let myList=document.querySelector(".list")
-let items=myList.querySelectorAll("li")
+// menu open/close
 
-
-
-let menu=document.querySelector(".menu")
-       menu.onclick=()=>{
-           menu.style.display="none";
-           myList.style.display="flex"
-           myList.style="right:0"
-       }
-
-let closeBtn=document.querySelector(".close-menu")
-closeBtn.onclick=()=>{
-     myList.style="right:-100%"
-     menu.style.display="block";
-     
+let navBar=document.querySelector(".nav-bar")
+let menuBtn=document.querySelector(".nav-bar-open")
+menuBtn.onclick=()=>{
+   navBar.classList.toggle("open")
 }
 
+// header transform with scrolling
 
-
-    myList.onclick=(e)=>{
-        if(window.innerWidth<570){
-            for(item of items){
-                item.style="backgroundColor:transparent;color:white;"
+    let header=document.querySelector(".header")
+    window.onscroll=()=>{
+        if(window.innerWidth>470){
+            if(window.pageYOffset>0){
+                header.style='bottom:0';
+                navBar.style='top:-20%'
             }
-            if(e.target.nodeName==="LI"&&e.target.children.length<2){
-                e.target.style="background-color:white;color:black;"
-                console.log(e.target)
+            else{
+                header.style='bottom:90%';
+                navBar.style='top:80%'
             }
-           }
         }
 
-       
-        
-
-let selectionOptions=document.querySelector(".select-options")
-let selectionBox=document.querySelector(".select-wrapper")
-let selectionBoxDown=document.querySelector(".fa-caret-down")
-selectionBox.onclick=()=>{
-    selectionOptions.classList.toggle("active")
-}
-selectionBox.addEventListener("mouseenter",()=>{
-    selectionBoxDown.style.transform="rotate(180deg)";
-})
-selectionBox.onmouseleave=()=>{
-    selectionBoxDown.style.transform="rotate(0deg)"
-}
+    }
 
 
+// auto writing 
 let words=["23 years old Tunisian ","front end web developper"];
 let empty=""
 let index=0;
@@ -96,6 +72,7 @@ let mainBtn=document.querySelector(".discover");
 
 mainBtn.onclick=()=>{
     document.body.style.overflowY="scroll";
+    window.sessionStorage.setItem("isVisited","true")
     setTimeout(()=>{
         window.scrollTo({
             top:window.innerHeight/1.5,
@@ -105,9 +82,11 @@ mainBtn.onclick=()=>{
     },0)
 
 }
-setInterval(function(){
-    document.body.style.overflowY="scroll"
-},5000)
+window.onload=()=>{
+    if(window.sessionStorage.getItem('isVisited')==="true"){
+        document.body.style.overflowY="scroll";
+    }
+}
 
 // btn 3d animation
 
@@ -140,25 +119,57 @@ project.forEach(p=>{
 let contact=document.querySelector(".contact")
 let send=document.querySelectorAll(".fa-chevron-right");
 
+
 send.forEach(s=>{
     s.onclick=()=>{
         let previousElement=s.previousElementSibling;
         let parentElement=s.parentElement;
         let nextElement=s.parentElement.nextElementSibling;
-        console.log(previousElement.value)
-
-        if(previousElement.value.length>5){
+        console.log(previousElement.placeholder==="YOUR NAME")
+       
+        if(previousElement.placeholder==="YOUR EMAIL"){
+            const emailValidation=/^[a-zA-Z0-9]*(@)[a-zA-Z]*(\.)[a-z-A-Z]*$/
+            if (emailValidation.test(previousElement.value)){
+                parentElement.classList.remove("valid")
+                            nextElement.classList.add("valid")
+                            contact.style.backgroundColor="#1E2322"
+            }
+            else{
+                contact.style.backgroundColor="rgb(178, 46, 46)";
+                parentElement.style="animation:wrong 0.5s linear ;"
+                parentElement.onanimationend=()=>{
+                    parentElement.style.animation="none"
+                 }
+            }
+        }
+       if(previousElement.placeholder==="YOUR NAME"){
+            if(previousElement.value.length>3){
+                parentElement.classList.remove("valid")
+                            nextElement.classList.add("valid")
+                            contact.style.backgroundColor="#1E2322"
+            }
+            else{
+                contact.style.backgroundColor="rgb(178, 46, 46)";
+                parentElement.style="animation:wrong 0.5s linear ;"
+                parentElement.onanimationend=()=>{
+                    parentElement.style.animation="none"
+                 }
+            }
+        }
+       else{
+           if(previousElement.value.length>3){
             parentElement.classList.remove("valid")
             nextElement.classList.add("valid")
             contact.style.backgroundColor="#1E2322"
-        }
-        else{
+           }
+           else{
             contact.style.backgroundColor="rgb(178, 46, 46)";
             parentElement.style="animation:wrong 0.5s linear ;"
             parentElement.onanimationend=()=>{
                 parentElement.style.animation="none"
-            }
-        }
+             }
+           }
+       }
     }
 })
 
