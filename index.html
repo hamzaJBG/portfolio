@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
+    <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
 
     <link rel="stylesheet" href="style.css"> 
@@ -22,34 +21,27 @@
     <div class="cursor point"></div>
     <!-- Header -->
     <header class="header">
-        <i class="fa-solid fa-bars menu"></i>
-        <ul class="list">
-            <li>
-                <i class="fa-solid fa-xmark close-menu"></i>
-            </li>
-            <li class="item item-select-option">
-                <div class="select-wrapper">
-                   <p>Work</p>
-                   <i class="fa-solid fa-caret-down"></i>
-                </div>
-                <ul class="select-options">
-                   <li class="option">HTML , CSS</li>
-                   <li class="option">ReactJs</li>
-                </ul>
-
-            </li>
-            <li class="item">
-                About
-            </li>
-            <li class="item">
-                Contact
-            </li>
+        <ul class="nav-bar">
+            <i class="fa-solid fa-bars nav-bar-open"></i>
+            <!-- <li class=""></li> -->
+            <a href="#main-page" class="list">
+                <span class="list-title">HOME</span>
+                <i class="fa-solid fa-house list-icon"></i>
+            </a>
+            <a href="#about" class="list">
+                <span class="list-title">PROJECT</span>
+                <i class="fa-solid fa-briefcase list-icon"></i>
+            </a>
+            <a href="#contact" class="list">
+                <span class="list-title">CONTACT</span>
+                <i class="fa-solid fa-message list-icon"></i>
+            </a>
         </ul>
     </header>
 
     <!-- Main page -->
 
-    <main class="main-page">
+    <main id="main-page" class="main-page">
         <div class="image">
             <div class="img-top"></div>
             <div class="img-bottom"></div>
@@ -66,7 +58,7 @@
         </div>
 
     </main>
-    <section class="about">
+    <section class="about" id="about">
         <h1 class="title">My Skills</h1>
         <div class="cart html">
             <div class="img">
@@ -74,7 +66,7 @@
             </div>
             <div class="info">
                 <h2>HTML</h2>
-                <p>I work  the basics and semantics html new element</p>
+                <p>clean and semantics HTML5 code</p>
             </div>
         </div>
         <div class="cart css">
@@ -92,7 +84,7 @@
             </div>
             <div class="info">
                 <h2>JavaScript</h2>
-                <p>Basics ,ES6 , jQuery , </p>
+                <p>DOM ,ES6  </p>
             </div>
         </div>
         <div class="cart React">
@@ -101,7 +93,7 @@
             </div>
             <div class="info">
                 <h2>React</h2>
-                <p>Single Page Apllication, medium level , In progressing </p>
+                <p>SPA: using ReactJs , API </p>
             </div>
         </div>
     </section>
@@ -142,8 +134,9 @@
  
 
     </section>
+ <!-- contact page-->
 
-    <section class="contact">
+   <section id="contact" class="contact">
         <div class="input valid input-email">
             <input placeholder="YOUR EMAIL" type="text" class="email">
             <i class="fa-solid fa-chevron-right"></i>
@@ -160,9 +153,7 @@
             <p>Thanks , we recive your message</p>
             
         </div>
-        <a href="https://www.facebook.com/hamza.jb.3990/"> <i class="fa-brands fa-facebook-square facebook"></i></a>
-        <a href="https://www.linkedin.com/in/hamza-jaballi-86643a235/"> <i class="fa-brands fa-linkedin linkedin"></i></a>
-
+        
     </section>
 
 
